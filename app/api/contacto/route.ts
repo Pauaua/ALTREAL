@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     await resend.emails.send({
       from: 'ALT. Asamblea Las Torres <hola@asamblealastorres.cl>',
       to: 'hola@asamblealastorres.cl',
-      replyTo: email.trim(),
+      reply_to: email.trim(),
       subject: `Nuevo mensaje: ${motivo}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 32px; background: #f4f2ee;">
