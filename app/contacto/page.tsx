@@ -4,7 +4,7 @@ import ContactForm from '@/components/ContactForm'
 export const metadata: Metadata = {
   title: 'Contacto — Asamblea Las Torres',
   description:
-    'Escribinos para participar en jornadas, sumarte a la organización, donar herramientas o simplemente hacer una consulta.',
+    'Contáctanos para participar en jornadas, sumarte a la organización, donar herramientas o simplemente hacer una consulta.',
 }
 
 const formasColaborar = [
@@ -20,43 +20,43 @@ export default function Contacto() {
   return (
     <>
       {/* ── HEADER ── */}
-      <section className="bg-black pt-32 pb-16">
+      <section className="bg-white pt-32 pb-16 border-b border-zinc-100">
         <div className="max-w-6xl mx-auto px-6">
           <p className="section-label mb-6">Ponerse en contacto</p>
           <h1
-            className="font-display font-bold leading-none tracking-tight"
+            className="font-display font-bold leading-none tracking-tight text-zinc-900"
             style={{ fontSize: 'clamp(2.2rem, 5vw, 4.5rem)' }}
           >
             Hablemos.{' '}
-            <span className="text-green-light">Estamos aquí.</span>
+            <span className="text-green-base">Estamos aquí.</span>
           </h1>
         </div>
       </section>
 
       {/* ── MAIN CONTENT ── */}
-      <section className="bg-black pb-24">
+      <section className="bg-zinc-50 pb-24 pt-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
 
             {/* Info de contacto */}
             <div className="lg:col-span-2 space-y-8">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-off-white/40 mb-4">
+                <p className="text-xs font-semibold uppercase tracking-widest text-zinc-400 mb-4">
                   Correo
                 </p>
                 <a
                   href="mailto:hola@asamblealastorres.cl"
-                  className="text-green-light font-semibold hover:text-green-mid transition-colors"
+                  className="text-green-base font-semibold hover:text-green-mid transition-colors"
                 >
                   hola@asamblealastorres.cl
                 </a>
               </div>
 
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-off-white/40 mb-4">
+                <p className="text-xs font-semibold uppercase tracking-widest text-zinc-400 mb-4">
                   Ubicación del espacio
                 </p>
-                <p className="text-off-white/70 leading-relaxed">
+                <p className="text-zinc-600 leading-relaxed">
                   Av. Las Torres esq. Fontana Rosa<br />
                   Quilicura, Región Metropolitana<br />
                   Chile
@@ -64,21 +64,21 @@ export default function Contacto() {
               </div>
 
               <div className="card p-6">
-                <p className="text-xs font-semibold uppercase tracking-widest text-off-white/40 mb-4">
+                <p className="text-xs font-semibold uppercase tracking-widest text-zinc-400 mb-4">
                   Formas de colaborar
                 </p>
                 <ul className="space-y-3">
                   {formasColaborar.map((forma) => (
                     <li key={forma} className="flex items-start gap-3">
                       <span className="text-green-base mt-0.5 flex-shrink-0">✦</span>
-                      <span className="text-off-white/65 text-sm">{forma}</span>
+                      <span className="text-zinc-500 text-sm">{forma}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div className="border-l-2 border-green-base pl-5">
-                <p className="text-off-white/55 text-sm leading-relaxed italic">
+                <p className="text-zinc-500 text-sm leading-relaxed italic">
                   "El proyecto es de todas y todos. Tu participación, grande o pequeña,
                   hace la diferencia."
                 </p>
@@ -87,9 +87,9 @@ export default function Contacto() {
 
             {/* Formulario */}
             <div className="lg:col-span-3">
-              <div className="bg-zinc-900 border border-white/5 rounded-2xl p-8">
-                <h2 className="font-display font-bold text-2xl mb-2">Envianos un mensaje</h2>
-                <p className="text-off-white/45 text-sm mb-8">
+              <div className="bg-white border border-zinc-100 rounded-2xl shadow-sm p-8">
+                <h2 className="font-display font-bold text-2xl mb-2 text-zinc-900">Envianos un mensaje</h2>
+                <p className="text-zinc-400 text-sm mb-8">
                   Completá el formulario y te respondemos a la brevedad.
                 </p>
                 <ContactForm />
@@ -100,7 +100,7 @@ export default function Contacto() {
       </section>
 
       {/* ── INFO ADICIONAL ── */}
-      <section className="bg-zinc-900 py-16 border-t border-white/5">
+      <section className="bg-white py-16 border-t border-zinc-100">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {[
@@ -122,8 +122,8 @@ export default function Contacto() {
             ].map((item) => (
               <div key={item.title} className="py-4">
                 <div className="text-3xl mb-3">{item.icon}</div>
-                <h3 className="font-display font-bold text-lg mb-2">{item.title}</h3>
-                <p className="text-off-white/50 text-sm">{item.desc}</p>
+                <h3 className="font-display font-bold text-lg mb-2 text-zinc-900">{item.title}</h3>
+                <p className="text-zinc-500 text-sm">{item.desc}</p>
               </div>
             ))}
           </div>

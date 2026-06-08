@@ -4,20 +4,20 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Proyectos — Asamblea Las Torres',
   description:
-    'Espacio Las Torres #53: bosque nativo con método Miyawaki en Av. Las Torres, Quilicura. 25+ especies, murales y talleres comunitarios.',
+    'Espacio comunitario y multicultural Las Torres #53 en Quilicura. Forestación nativa, huerta urbana, talleres y encuentros desde 2020.',
 }
 
 const especiesPorEstrato = [
   {
-    estrato: 'Dominante',
-    especies: ['Bollén', 'Peumo', 'Quillay', 'Algarrobo', 'Maitén', 'Tara', 'Mayú'],
+    estrato: 'Árboles nativos',
+    especies: ['Quillay', 'Peumo', 'Algarrobo', 'Bollén', 'Maitén', 'Tara', 'Mayú', 'Espino'],
   },
   {
-    estrato: 'Arbustivo',
+    estrato: 'Arbustos',
     especies: ['Boldo', 'Huingán', 'Molle', 'Chagualillo', 'Colliguay', 'Litre'],
   },
   {
-    estrato: 'Suelo',
+    estrato: 'Estrato bajo',
     especies: ['Tralhuén', 'Belloto del Norte', 'Belloto del Sur'],
   },
   {
@@ -40,42 +40,37 @@ const especiesPorEstrato = [
   },
 ]
 
-const pasosMiyawaki = [
+const etapas = [
   {
-    n: 1,
-    title: 'Diagnóstico del suelo',
-    desc: 'Evaluación del estado inicial del terreno. En este caso: alta degradación, relleno con escombros y basura acumulada.',
+    n: '01',
+    estado: 'Completada',
+    title: 'Limpieza, forestación y mantención',
+    periodo: 'Octubre 2020 — actualidad',
+    desc: 'Retiro de escombros y limpieza del terreno. Preparación de la tierra e inicio de la forestación con especies nativas. Jornadas de reforestación y mantención continua del espacio. Desde 2020 a la fecha se han forestado más de 25 especies nativas con presencia permanente en el lugar.',
   },
   {
-    n: 2,
-    title: 'Enmienda y regeneración',
-    desc: 'Incorporación de materia orgánica y compost para restablecer la vida microbiana del suelo y mejorar su estructura.',
+    n: '02',
+    estado: 'En desarrollo',
+    title: 'Recurso hídrico y huerta urbana',
+    periodo: 'Próxima etapa',
+    desc: 'Instalación de un recurso hídrico constante que permita sustentar una huerta urbana comunitaria. Esta etapa incluirá talleres abiertos durante su construcción para educar sobre soberanía alimentaria y su puesta en práctica.',
   },
   {
-    n: 3,
-    title: 'Selección de especies nativas',
-    desc: 'Identificación de plantas propias del ecosistema local por estrato ecológico: dominante, arbustivo, suelo y pasto.',
-  },
-  {
-    n: 4,
-    title: 'Plantación densa y estratificada',
-    desc: 'Alta densidad de plantación que genera competencia positiva entre especies. Esto acelera el crecimiento y la resiliencia.',
-  },
-  {
-    n: 5,
-    title: 'Riego y acompañamiento inicial',
-    desc: 'Cuidado intensivo en los primeros años hasta que el bosque alcanza autosustentabilidad. Sin fertilizantes químicos.',
+    n: '03',
+    estado: 'Proyectada',
+    title: 'Infraestructura y talleres',
+    periodo: 'Etapa futura',
+    desc: 'Habilitación de un espacio cómodo y seguro para la implementación de talleres educativos abiertos a la comunidad. Enfocados en educación medioambiental, educación emocional, nivelación de contenidos y necesidades propias del territorio.',
   },
 ]
 
 export default function Proyectos() {
   return (
     <>
-      {/* ── HERO OSCURO ── */}
+      {/* ── HERO ── */}
       <section className="relative bg-zinc-900 pt-32 pb-20 overflow-hidden">
-        {/* Texto decorativo */}
         <span
-          className="absolute right-4 top-1/2 -translate-y-1/2 font-display font-bold text-white/3 select-none pointer-events-none leading-none"
+          className="absolute right-4 top-1/2 -translate-y-1/2 font-display font-bold text-white/5 select-none pointer-events-none leading-none"
           style={{ fontSize: 'clamp(8rem, 25vw, 22rem)' }}
           aria-hidden="true"
         >
@@ -83,135 +78,157 @@ export default function Proyectos() {
         </span>
 
         <div className="max-w-6xl mx-auto px-6 relative">
-          <p className="section-label mb-6">Proyecto principal</p>
+          <p className="section-label mb-6" style={{ color: 'rgba(94,196,94,0.7)' }}>Proyecto principal</p>
           <h1
-            className="font-display font-bold leading-none tracking-tight mb-2"
+            className="font-display font-bold leading-none tracking-tight mb-4 text-white"
             style={{ fontSize: 'clamp(2.2rem, 5vw, 5rem)' }}
           >
-            Espacio Las Torres{' '}
-            <span className="text-green-light">#53</span>
+            Espacio Comunitario{' '}
+            <span className="text-green-light">Las Torres #53</span>
           </h1>
-          <p className="text-off-white/55 text-xl mb-10 max-w-xl leading-relaxed">
-            Bosque nativo urbano en el corazón de Quilicura. Transformación de un espacio degradado
-            en un ecosistema vivo para el barrio.
+          <p className="text-white/55 text-xl mb-10 max-w-2xl leading-relaxed">
+            Un espacio que hace nacer un ecosistema nativo único en medio de la ciudad.
+            Autogestionado desde el territorio, sostenido por trabajo comunitario, dedicado
+            a la regeneración del suelo y al encuentro de quienes habitan Quilicura.
           </p>
 
-          {/* Metadatos */}
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap gap-4">
             {[
-              { label: 'Inicio', value: '2020' },
+              { label: 'Fundación ALT', value: '2019' },
+              { label: 'Inicio del espacio', value: 'Oct. 2020' },
               { label: 'Ubicación', value: 'Av. Las Torres, Quilicura' },
-              { label: 'Método', value: 'Miyawaki' },
-              { label: 'Estado', value: 'En curso' },
+              { label: 'Estado', value: 'Activo' },
             ].map((m) => (
               <div key={m.label} className="border border-white/10 rounded-lg px-4 py-3">
-                <p className="text-xs text-off-white/40 uppercase tracking-wider">{m.label}</p>
-                <p className="font-semibold text-sm mt-0.5">{m.value}</p>
+                <p className="text-xs text-white/40 uppercase tracking-wider">{m.label}</p>
+                <p className="font-semibold text-sm mt-0.5 text-white">{m.value}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── STATS IMPACTO ── */}
-      <section className="bg-black py-16 border-b border-white/5">
+      {/* ── STATS ── */}
+      <section className="bg-white py-16 border-b border-zinc-100">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { value: '25+', label: 'Especies nativas' },
-              { value: '5', label: 'Años de trabajo' },
-              { value: '3', label: 'Villas beneficiadas' },
-              { value: '10x', label: 'Más rápido que método convencional' },
+              { value: '25+', label: 'Especies nativas forestadas' },
+              { value: '5+', label: 'Años de trabajo continuo' },
+              { value: '3', label: 'Ejes del proyecto' },
+              { value: '2019', label: 'Año de fundación' },
             ].map((s) => (
               <div key={s.label} className="text-center py-6">
-                <p className="font-display font-bold text-green-light" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>
+                <p className="font-display font-bold text-green-base" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>
                   {s.value}
                 </p>
-                <p className="text-off-white/45 text-sm mt-1">{s.label}</p>
+                <p className="text-zinc-400 text-sm mt-1">{s.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CONTENIDO PRINCIPAL + SIDEBAR ── */}
-      <section className="bg-black py-20">
+      {/* ── POR QUÉ ── */}
+      <section className="bg-zinc-50 py-20 border-t border-zinc-100">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-12">
+            <p className="section-label mb-4">La razón de ser</p>
+            <h2 className="font-display font-bold text-4xl tracking-tight text-zinc-900 max-w-2xl">
+              Tres pilares que sostienen el proyecto
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: '🌿',
+                title: 'Medioambiente y calidad de vida',
+                desc: 'Cuidar el ecosistema ya no es un capricho, es una necesidad. Contrarrestamos las islas de calor urbanas con núcleos de bosque nativo que favorecen la calidad del aire y la regulación de temperaturas en Quilicura.',
+              },
+              {
+                icon: '🧠',
+                title: 'Áreas verdes y salud mental',
+                desc: 'Las áreas verdes son vitales para la salud mental. En Quilicura, zona industrial, estos espacios se ven cada vez más reducidos. Las Torres #53 es una respuesta concreta a esa escasez.',
+              },
+              {
+                icon: '🤝',
+                title: 'Educación y espacios comunitarios',
+                desc: 'En una sociedad individualista, generar espacios de encuentro es urgente. Creamos instancias de aprendizaje colectivo que responden a las necesidades reales de las comunidades del territorio.',
+              },
+            ].map((p) => (
+              <div key={p.title} className="card p-8">
+                <div className="text-3xl mb-4">{p.icon}</div>
+                <h3 className="font-display font-bold text-lg mb-3 text-zinc-900">{p.title}</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ETAPAS + SIDEBAR ESPECIES ── */}
+      <section className="bg-white py-20 border-t border-zinc-100">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-            {/* Columna principal */}
-            <div className="lg:col-span-2 space-y-14">
-              {/* El problema */}
-              <div>
-                <p className="section-label mb-5">El contexto</p>
-                <h2 className="font-display font-bold text-3xl tracking-tight mb-5">
-                  Quilicura y la crisis ambiental urbana
+            {/* Etapas */}
+            <div className="lg:col-span-2 space-y-6">
+              <div className="mb-8">
+                <p className="section-label mb-4">Estructura del proyecto</p>
+                <h2 className="font-display font-bold text-4xl tracking-tight text-zinc-900">
+                  Tres etapas
                 </h2>
-                <div className="space-y-4 text-off-white/60 leading-relaxed">
-                  <p>
-                    Quilicura es una de las comunas con mayor densidad industrial de la Región
-                    Metropolitana. Esta concentración tiene un impacto directo y cotidiano en
-                    la calidad del aire, el agua y la salud de sus habitantes.
-                  </p>
-                  <p>
-                    La escasez de áreas verdes es un problema de salud pública concreto: la falta
-                    de cobertura vegetal genera islas de calor, empeorar la calidad del aire y
-                    elimina espacios de encuentro comunitario. La calle Las Torres tenía un
-                    micro-basural donde hoy hay un bosque.
-                  </p>
-                  <p>
-                    El método Miyawaki, desarrollado por el botánico japonés Akira Miyawaki
-                    (1928–2021), permite crear bosques nativos de alta densidad y diversidad
-                    biológica en espacios reducidos, hasta 10 veces más rápido que los métodos
-                    convencionales.
-                  </p>
-                </div>
+                <p className="text-zinc-500 mt-3 leading-relaxed">
+                  El espacio avanza por etapas concretas, desde la forestación inicial hasta
+                  la proyección de una huerta urbana e infraestructura para talleres. La primera
+                  etapa lleva activa de forma ininterrumpida desde octubre de 2020.
+                </p>
               </div>
 
-              {/* Método Miyawaki */}
-              <div>
-                <p className="section-label mb-5">La metodología</p>
-                <h2 className="font-display font-bold text-3xl tracking-tight mb-2">
-                  Método Miyawaki
-                </h2>
-                <p className="text-off-white/55 mb-8">
-                  Genera bosques hasta 10 veces más rápidos, 30 veces más densos y 100 veces
-                  más biodiversos que plantaciones convencionales. Sin fertilizantes ni abonos
-                  químicos. Autosustentable a mediano plazo.
-                </p>
-                <div className="space-y-4">
-                  {pasosMiyawaki.map((paso) => (
-                    <div key={paso.n} className="flex gap-5 items-start">
-                      <div className="w-9 h-9 rounded-full bg-green-dark border border-green-base flex-shrink-0 flex items-center justify-center">
-                        <span className="font-display font-bold text-sm text-green-light">
-                          {paso.n}
+              <div className="space-y-5">
+                {etapas.map((e) => (
+                  <div key={e.n} className="card p-7">
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div className="flex items-center gap-4">
+                        <span className="font-display font-bold text-4xl text-green-base/15 leading-none select-none">
+                          {e.n}
                         </span>
+                        <div>
+                          <h3 className="font-display font-bold text-lg text-zinc-900">{e.title}</h3>
+                          <p className="text-xs text-zinc-400 mt-0.5">{e.periodo}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-display font-bold mb-1">{paso.title}</h4>
-                        <p className="text-off-white/55 text-sm leading-relaxed">{paso.desc}</p>
-                      </div>
+                      <span className={`flex-shrink-0 text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full ${
+                        e.estado === 'Completada'
+                          ? 'bg-green-base/10 text-green-base'
+                          : e.estado === 'En desarrollo'
+                          ? 'bg-amber-50 text-amber-600'
+                          : 'bg-zinc-100 text-zinc-400'
+                      }`}>
+                        {e.estado}
+                      </span>
                     </div>
-                  ))}
-                </div>
+                    <p className="text-zinc-500 text-sm leading-relaxed">{e.desc}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Sidebar sticky con especies */}
+            {/* Sidebar especies */}
             <aside className="lg:sticky lg:top-24 self-start">
               <div className="card p-7">
-                <p className="text-xs font-semibold uppercase tracking-widest text-off-white/40 mb-5">
-                  Especies presentes
+                <p className="text-xs font-semibold uppercase tracking-widest text-zinc-400 mb-5">
+                  Especies forestadas
                 </p>
                 <div className="space-y-5">
                   {especiesPorEstrato.map((grupo) => (
                     <div key={grupo.estrato}>
-                      <p className="text-xs text-green-light font-semibold uppercase tracking-wider mb-2">
+                      <p className="text-xs text-green-base font-semibold uppercase tracking-wider mb-2">
                         {grupo.estrato}
                       </p>
                       <ul className="space-y-1">
                         {grupo.especies.map((esp) => (
-                          <li key={esp} className="text-sm text-off-white/60 flex items-start gap-2">
+                          <li key={esp} className="text-sm text-zinc-500 flex items-start gap-2">
                             <span className="text-green-base mt-0.5">·</span>
                             {esp}
                           </li>
@@ -227,11 +244,11 @@ export default function Proyectos() {
       </section>
 
       {/* ── ACTIVIDADES ── */}
-      <section className="bg-zinc-900 py-24">
+      <section className="bg-zinc-50 py-24 border-t border-zinc-100">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-12">
             <p className="section-label mb-4">Más que un bosque</p>
-            <h2 className="font-display font-bold text-4xl tracking-tight">
+            <h2 className="font-display font-bold text-4xl tracking-tight text-zinc-900">
               Actividades del espacio
             </h2>
           </div>
@@ -239,56 +256,70 @@ export default function Proyectos() {
             {[
               {
                 icon: '🎨',
-                title: 'Murales urbanos',
-                desc: 'Restauración del mural original de 2021 y creación de nuevas intervenciones con participación vecinal directa en diseño y ejecución.',
+                title: 'Murales comunitarios',
+                desc: 'Intervenciones artísticas con participación vecinal directa. El primer mural data de 2021 y el espacio sigue creciendo con nuevas creaciones colectivas.',
               },
               {
                 icon: '📚',
-                title: 'Talleres comunitarios',
-                desc: 'Educación popular sobre fertilización y cuidado de plantas nativas, plantas comestibles, huertos medicinales y muralismo urbano.',
+                title: 'Talleres y encuentros',
+                desc: 'Instancias abiertas de educación popular sobre plantas nativas, soberanía alimentaria, cuidado del entorno y otras necesidades que la comunidad levanta.',
               },
               {
                 icon: '🪵',
                 title: 'Señalética en madera',
-                desc: 'Placas grabadas a mano para cada especie del bosque con nombre científico, características y usos tradicionales.',
+                desc: 'Placas grabadas para cada especie del bosque. Una forma de educar mientras se camina, conectando a quienes visitan el espacio con la flora nativa.',
               },
             ].map((act) => (
               <div key={act.title} className="card p-7">
                 <div className="text-3xl mb-4">{act.icon}</div>
-                <h3 className="font-display font-bold text-lg mb-2">{act.title}</h3>
-                <p className="text-off-white/55 text-sm leading-relaxed">{act.desc}</p>
+                <h3 className="font-display font-bold text-lg mb-2 text-zinc-900">{act.title}</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">{act.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── OTRAS INICIATIVAS ── */}
-      <section className="bg-black py-20">
+      {/* ── TRABAJO CONTINUO ── */}
+      <section className="bg-white py-20 border-t border-zinc-100">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="mb-10">
-            <p className="section-label mb-4">Más allá del espacio</p>
-            <h2 className="font-display font-bold text-3xl tracking-tight">
-              Otras iniciativas
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="card p-8">
-              <div className="text-3xl mb-4">🕸️</div>
-              <h3 className="font-display font-bold text-xl mb-2">Red territorial</h3>
-              <p className="text-off-white/55 leading-relaxed">
-                Articulación con organizaciones vecinales, colectivos y agrupaciones de
-                Quilicura y otras comunas. Compartimos metodologías y apoyamos iniciativas
-                similares en otros territorios.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="section-label mb-5">Desde 2020 sin parar</p>
+              <h2 className="font-display font-bold text-4xl tracking-tight text-zinc-900 mb-5">
+                Un proyecto en construcción permanente
+              </h2>
+              <div className="space-y-4 text-zinc-500 leading-relaxed">
+                <p>
+                  Las Torres #53 no es un proyecto de nadie en particular: es un espacio que
+                  el territorio fue haciendo posible. La asamblea cumple un rol de gestión y
+                  acompañamiento, pero lo que sostiene el espacio es el trabajo colectivo de
+                  quienes lo habitan y lo cuidan.
+                </p>
+                <p>
+                  El foco está puesto en la regeneración del suelo mediante la forestación con
+                  especies nativas, contribuyendo a revertir el deterioro ambiental de una
+                  zona con alta densidad industrial y escasas áreas verdes.
+                </p>
+                <p>
+                  Desde octubre de 2020 a hoy, el espacio no ha dejado de crecer: nuevas especies,
+                  nuevas intervenciones artísticas, nuevas instancias de encuentro abierto.
+                  Es un organismo vivo, autogestionado, que se construye con cada jornada.
+                </p>
+              </div>
             </div>
-            <div className="card p-8">
-              <div className="text-3xl mb-4">🌱</div>
-              <h3 className="font-display font-bold text-xl mb-2">Apoyo a proyectos similares</h3>
-              <p className="text-off-white/55 leading-relaxed">
-                Acompañamos a grupos que quieren replicar el modelo Miyawaki en sus barrios.
-                Compartimos experiencia, errores y aprendizajes sin costo y con mucho gusto.
-              </p>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { year: '2020', hito: 'Limpieza y primera forestación' },
+                { year: '2021', hito: 'Primer mural comunitario' },
+                { year: '2022', hito: 'Reforestación y mantención' },
+                { year: '2024', hito: 'Fondos concursables adjudicados' },
+              ].map((h) => (
+                <div key={h.year} className="card p-5">
+                  <p className="font-display font-bold text-2xl text-green-base mb-1">{h.year}</p>
+                  <p className="text-zinc-500 text-sm leading-snug">{h.hito}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -297,18 +328,18 @@ export default function Proyectos() {
       {/* ── CTA ── */}
       <section className="bg-green-dark py-24">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <h2 className="font-display font-bold text-4xl tracking-tight mb-4">
+          <h2 className="font-display font-bold text-4xl tracking-tight mb-4 text-white">
             ¿Querés sumarte a una jornada?
           </h2>
-          <p className="text-off-white/70 text-lg mb-8">
+          <p className="text-white/70 text-lg mb-8">
             Organizamos jornadas de plantación, talleres y encuentros abiertos.
-            Escribinos para saber cuándo es la próxima actividad.
+            Contáctanos para saber cuándo es la próxima actividad.
           </p>
           <Link
             href="/contacto"
-            className="inline-block bg-off-white text-green-dark font-bold rounded-full px-10 py-4 hover:bg-off-white/90 hover:-translate-y-1 transition-all"
+            className="inline-block bg-white text-green-dark font-bold rounded-full px-10 py-4 hover:bg-white/90 hover:-translate-y-1 transition-all"
           >
-            Escribinos
+            Contáctanos
           </Link>
         </div>
       </section>

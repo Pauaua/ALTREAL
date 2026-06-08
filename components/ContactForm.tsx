@@ -59,16 +59,16 @@ export default function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div className="bg-green-dark/30 border border-green-base/40 rounded-xl p-10 text-center">
+      <div className="bg-green-base/8 border border-green-base/20 rounded-xl p-10 text-center">
         <div className="text-5xl mb-4">🌱</div>
-        <h3 className="font-display font-bold text-2xl mb-3">
+        <h3 className="font-display font-bold text-2xl mb-3 text-zinc-900">
           ¡Mensaje recibido!
         </h3>
-        <p className="text-off-white/70 mb-2">
+        <p className="text-zinc-600 mb-2">
           Tu mensaje llegó a{' '}
-          <span className="text-green-light">hola@asamblealastorres.cl</span>
+          <span className="text-green-base font-semibold">hola@asamblealastorres.cl</span>
         </p>
-        <p className="text-off-white/50 text-sm mb-6">
+        <p className="text-zinc-400 text-sm mb-6">
           Te responderemos a la brevedad posible.
         </p>
         <button
@@ -85,7 +85,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="nombre" className="block text-sm text-off-white/60 mb-2">
+          <label htmlFor="nombre" className="block text-sm text-zinc-500 mb-2">
             Nombre
           </label>
           <input
@@ -101,7 +101,7 @@ export default function ContactForm() {
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm text-off-white/60 mb-2">
+          <label htmlFor="email" className="block text-sm text-zinc-500 mb-2">
             Correo electrónico
           </label>
           <input
@@ -119,7 +119,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="motivo" className="block text-sm text-off-white/60 mb-2">
+        <label htmlFor="motivo" className="block text-sm text-zinc-500 mb-2">
           Motivo del contacto
         </label>
         <select
@@ -143,7 +143,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="mensaje" className="block text-sm text-off-white/60 mb-2">
+        <label htmlFor="mensaje" className="block text-sm text-zinc-500 mb-2">
           Mensaje
         </label>
         <textarea
@@ -160,7 +160,7 @@ export default function ContactForm() {
       </div>
 
       {status === 'error' && (
-        <div className="bg-red-950/40 border border-red-800/40 rounded-lg px-4 py-3 text-sm text-red-300">
+        <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-600">
           {errorMessage}
         </div>
       )}

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   keywords: 'Asamblea Las Torres, ALT, Quilicura, reforestación, método Miyawaki, especies nativas, organización vecinal, medioambiente',
   openGraph: {
     title: 'Asamblea Las Torres — ALT',
-    description: 'Territorio. Raíz. Comunidad. Organización autogestiva de Quilicura.',
+    description: 'Territorio. Raíz. Comunidad. Organización autogestionada de Quilicura.',
     locale: 'es_CL',
     type: 'website',
   },
@@ -37,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${spaceGrotesk.variable} ${inter.variable}`}>
-      <body className="bg-black text-off-white font-body antialiased">
+      <body className="bg-white text-zinc-800 font-body antialiased">
         <Nav />
         <main>{children}</main>
         <Footer />

@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Quiénes somos — Asamblea Las Torres',
   description:
-    'Conocé la historia, principios y estructura de la Asamblea Las Torres, organización territorial autogestiva de Quilicura.',
+    'Conocé la historia, principios y estructura de la Asamblea Las Torres, organización territorial autogestionada de Quilicura.',
 }
 
 const principios = [
@@ -71,11 +71,11 @@ export default function QuienesSomos() {
   return (
     <>
       {/* ── HEADER ── */}
-      <section className="bg-black pt-32 pb-20">
+      <section className="bg-white pt-32 pb-20 border-b border-zinc-100">
         <div className="max-w-6xl mx-auto px-6">
           <p className="section-label mb-6">Quiénes somos</p>
           <h1
-            className="font-display font-bold leading-none tracking-tight max-w-3xl"
+            className="font-display font-bold leading-none tracking-tight max-w-3xl text-zinc-900"
             style={{ fontSize: 'clamp(2.2rem, 5vw, 4.5rem)' }}
           >
             Una asamblea que actúa desde el territorio
@@ -84,11 +84,11 @@ export default function QuienesSomos() {
       </section>
 
       {/* ── HISTORIA + STATS ── */}
-      <section className="bg-zinc-900 py-20">
+      <section className="bg-zinc-50 py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             {/* Texto historia */}
-            <div className="lg:col-span-2 space-y-5 text-off-white/65 leading-relaxed">
+            <div className="lg:col-span-2 space-y-5 text-zinc-500 leading-relaxed">
               <p>
                 La Asamblea Las Torres nació en 2019 desde la organización vecinal de Quilicura,
                 impulsada por la preocupación común frente a la falta de áreas verdes, los altos
@@ -96,7 +96,7 @@ export default function QuienesSomos() {
                 el tejido social del barrio.
               </p>
               <p>
-                Desde el primer momento optamos por la autogestión: sin esperar ni depender de
+                Desde el primer momento optamos por ser autogestionadas: sin esperar ni depender de
                 terceros para actuar. En 2020 iniciamos la transformación de un micro-basural
                 en la calle Las Torres usando el método Miyawaki, generando el primer bosque
                 nativo urbano de la zona.
@@ -116,18 +116,18 @@ export default function QuienesSomos() {
 
             {/* Card números */}
             <div className="card p-8 space-y-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-off-white/40 mb-2">
+              <p className="text-xs font-semibold uppercase tracking-widest text-zinc-400 mb-2">
                 En números
               </p>
               {[
                 { value: '16', label: 'socias y socios activos' },
                 { value: '25+', label: 'especies nativas' },
                 { value: '5', label: 'años de trabajo continuo' },
-                { value: '100%', label: 'autogestión' },
+                { value: '100%', label: 'autogestionada' },
               ].map((n) => (
-                <div key={n.label} className="border-b border-white/5 pb-5 last:border-0 last:pb-0">
-                  <p className="font-display font-bold text-3xl text-green-light">{n.value}</p>
-                  <p className="text-off-white/50 text-sm">{n.label}</p>
+                <div key={n.label} className="border-b border-zinc-100 pb-5 last:border-0 last:pb-0">
+                  <p className="font-display font-bold text-3xl text-green-base">{n.value}</p>
+                  <p className="text-zinc-500 text-sm">{n.label}</p>
                 </div>
               ))}
             </div>
@@ -136,24 +136,22 @@ export default function QuienesSomos() {
       </section>
 
       {/* ── PRINCIPIOS ── */}
-      <section className="bg-black py-24">
+      <section className="bg-white py-24 border-t border-zinc-100">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-14">
             <p className="section-label mb-4">Cómo nos guiamos</p>
-            <h2 className="font-display font-bold text-4xl lg:text-5xl tracking-tight">
+            <h2 className="font-display font-bold text-4xl lg:text-5xl tracking-tight text-zinc-900">
               Seis principios
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {principios.map((p) => (
               <div key={p.num} className="card p-7">
-                <p
-                  className="font-display font-bold text-6xl text-green-base/20 leading-none mb-4 select-none"
-                >
+                <p className="font-display font-bold text-6xl text-green-base/15 leading-none mb-4 select-none">
                   {p.num}
                 </p>
-                <h3 className="font-display font-bold text-lg mb-2">{p.title}</h3>
-                <p className="text-off-white/55 text-sm leading-relaxed">{p.desc}</p>
+                <h3 className="font-display font-bold text-lg mb-2 text-zinc-900">{p.title}</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -163,26 +161,26 @@ export default function QuienesSomos() {
       {/* ── MANIFIESTO ── */}
       <section className="bg-green-dark py-24">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="section-label justify-center mb-8 text-green-light/70">Valores</p>
+          <p className="section-label justify-center mb-8" style={{ color: 'rgba(94,196,94,0.7)' }}>Valores</p>
           <blockquote
-            className="font-display font-bold leading-tight tracking-tight"
+            className="font-display font-bold leading-tight tracking-tight text-white"
             style={{ fontSize: 'clamp(1.4rem, 3.5vw, 2.5rem)' }}
           >
             "Creemos en el territorio como espacio político, en lo colectivo como herramienta,
             en la naturaleza como aliada."
           </blockquote>
-          <p className="mt-8 text-off-white/50 text-sm uppercase tracking-widest">
+          <p className="mt-8 text-white/50 text-sm uppercase tracking-widest">
             — Asamblea Las Torres
           </p>
         </div>
       </section>
 
       {/* ── ESTRUCTURA ── */}
-      <section className="bg-zinc-900 py-24">
+      <section className="bg-zinc-50 py-24 border-t border-zinc-100">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-14">
             <p className="section-label mb-4">Organización interna</p>
-            <h2 className="font-display font-bold text-4xl lg:text-5xl tracking-tight">
+            <h2 className="font-display font-bold text-4xl lg:text-5xl tracking-tight text-zinc-900">
               Estructura organizacional
             </h2>
           </div>
@@ -190,9 +188,9 @@ export default function QuienesSomos() {
             {estructura.map((e) => (
               <div key={e.title} className="card p-7">
                 <div className="text-3xl mb-4">{e.icon}</div>
-                <h3 className="font-display font-bold text-lg mb-1">{e.title}</h3>
-                <p className="text-xs text-green-light uppercase tracking-wider mb-3">{e.rol}</p>
-                <p className="text-off-white/55 text-sm leading-relaxed">{e.desc}</p>
+                <h3 className="font-display font-bold text-lg mb-1 text-zinc-900">{e.title}</h3>
+                <p className="text-xs text-green-base uppercase tracking-wider mb-3">{e.rol}</p>
+                <p className="text-zinc-500 text-sm leading-relaxed">{e.desc}</p>
               </div>
             ))}
           </div>
@@ -200,13 +198,13 @@ export default function QuienesSomos() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-black py-20 border-t border-white/5">
+      <section className="bg-white py-20 border-t border-zinc-100">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-4">
+          <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-4 text-zinc-900">
             ¿Querés ser parte?
           </h2>
-          <p className="text-off-white/55 mb-8">
-            La asamblea está abierta. Escribinos y conversamos.
+          <p className="text-zinc-500 mb-8">
+            La asamblea está abierta. Contáctanos y conversamos.
           </p>
           <Link href="/contacto" className="btn-primary">
             Contacto

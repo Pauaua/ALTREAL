@@ -16,26 +16,22 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/5 bg-black/70">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-black/5 bg-white/90">
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 relative">
+          <div className="w-12 h-12 relative flex items-center justify-center">
             <Image
-              src="/logo.png"
+              src="/ALT - Logo-03.png"
               alt="ALT Logo"
-              width={32}
-              height={32}
+              width={48}
+              height={48}
               className="object-contain"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement
-                target.style.display = 'none'
-              }}
             />
           </div>
-          <span className="font-display font-700 text-sm tracking-tight">
+          <span className="font-display font-bold text-sm tracking-tight text-zinc-800">
             Asamblea{' '}
-            <span className="text-green-light">Las Torres</span>
+            <span className="text-green-base">Las Torres</span>
           </span>
         </Link>
 
@@ -45,17 +41,17 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className={`nav-link text-sm font-medium transition-colors hover:text-off-white ${
+              className={`nav-link text-sm font-medium transition-colors hover:text-zinc-900 ${
                 pathname === link.href
-                  ? 'text-off-white active'
-                  : 'text-off-white/60'
+                  ? 'text-zinc-900 active'
+                  : 'text-zinc-500'
               }`}
             >
               {link.label}
             </Link>
           ))}
           <Link href="/contacto" className="btn-primary text-sm py-2 px-5">
-            Contacto
+            Contáctanos
           </Link>
         </div>
 
@@ -65,34 +61,22 @@ export default function Nav() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menú"
         >
-          <span
-            className={`block w-6 h-0.5 bg-off-white transition-all duration-300 ${
-              menuOpen ? 'rotate-45 translate-y-2' : ''
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-off-white transition-all duration-300 ${
-              menuOpen ? 'opacity-0' : ''
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-off-white transition-all duration-300 ${
-              menuOpen ? '-rotate-45 -translate-y-2' : ''
-            }`}
-          />
+          <span className={`block w-6 h-0.5 bg-zinc-800 transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`block w-6 h-0.5 bg-zinc-800 transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+          <span className={`block w-6 h-0.5 bg-zinc-800 transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
         </button>
       </nav>
 
       {/* Mobile overlay menu */}
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 top-16 bg-black/95 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-8">
+        <div className="md:hidden fixed inset-0 top-16 bg-white/98 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-8">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
               className={`font-display text-3xl font-bold transition-colors ${
-                pathname === link.href ? 'text-green-light' : 'text-off-white/80 hover:text-off-white'
+                pathname === link.href ? 'text-green-base' : 'text-zinc-700 hover:text-zinc-900'
               }`}
             >
               {link.label}
@@ -103,7 +87,7 @@ export default function Nav() {
             onClick={() => setMenuOpen(false)}
             className="btn-primary text-lg"
           >
-            Contacto
+            Contáctanos
           </Link>
         </div>
       )}
