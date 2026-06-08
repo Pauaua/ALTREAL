@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 
     // Enviar notificación por email
     await resend.emails.send({
-      from: 'ALT Contacto <onboarding@resend.dev>',
+      from: 'ALT. Asamblea Las Torres <hola@asamblealastorres.cl>',
       to: 'hola@asamblealastorres.cl',
       replyTo: email.trim(),
       subject: `Nuevo mensaje: ${motivo}`,
