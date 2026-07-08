@@ -7,6 +7,185 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum Rol {
+  ADMIN
+  ALTEA
+  ALT
+}
+
+enum TipoPropuesta {
+  USUARIO
+  PROYECTO
+  PUBLICACION
+}
+
+enum EstadoPropuesta {
+  PENDIENTE
+  APROBADA
+  RECHAZADA
+}
+
+enum TipoAdjunto {
+  CARTA_GANTT
+  PRESENTACION
+  IMAGEN_REFERENCIAL
+  OTRO
+}
+
+enum EstadoPublicacion {
+  BORRADOR
+  PUBLICADA
+}
+
+enum TipoPublicacion {
+  BLOG
+  NOTICIA
+}
+
+// ---------------------------------------------------------------------------
+// Usuario
+// ---------------------------------------------------------------------------
+
+model Usuario {
+  id               String    @id @default(cuid())
+  nombre           String
+  correo           String    @unique
+  passwordHash     String
+  avatarUrl        String?
+  telefono         String?
+  comunaResidencia String?
+  fechaIngreso     DateTime?
+  fechaRegistro    DateTime  @default(now())
+  activo           Boolean   @default(true)
+  rol              Rol       @default(ALT)
+
+  proyectos ProyectoUsuario[]
+
+  publicaciones Publicacion[] @relation("PublicacionAutor")
+
+  propuestasCreadas   Propuesta[] @relation("PropuestaCreador")
+  propuestasRevisadas Propuesta[] @relation("PropuestaRevisor")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("usuarios")
+}
+
+// ---------------------------------------------------------------------------
+// Proyecto
+// ---------------------------------------------------------------------------
+
+model Proyecto {
+  id                         String    @id @default(cuid())
+  nombre                     String
+  descripcion                String
+  fechaInicio                DateTime
+  fechaTermino               DateTime?
+  insumosNecesarios          String
+  cantidadPersonasNecesarias Int
+  organizacionesInvitadas    String[]  @default([])
+  activo                     Boolean   @default(true)
+
+  usuarios ProyectoUsuario[]
+  adjuntos Adjunto[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("proyectos")
+}
+
+// Tabla puente para la relación N:N Usuario <-> Proyecto
+model ProyectoUsuario {
+  usuarioId  String
+  proyectoId String
+  asignadoEn DateTime @default(now())
+
+  usuario  Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  proyecto Proyecto @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+
+  @@id([usuarioId, proyectoId])
+  @@map("proyecto_usuarios")
+}
+
+// ---------------------------------------------------------------------------
+// Adjunto (Vercel Blob: la BD solo guarda metadatos + URL)
+// ---------------------------------------------------------------------------
+
+model Adjunto {
+  id         String      @id @default(cuid())
+  proyectoId String
+  tipo       TipoAdjunto
+  nombre     String
+  url        String
+  mimeType   String
+  tamano     Int
+
+  proyecto Proyecto @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@map("adjuntos")
+}
+
+// ---------------------------------------------------------------------------
+// Publicacion (Blog / Noticias)
+// ---------------------------------------------------------------------------
+
+model Publicacion {
+  id        String            @id @default(cuid())
+  titulo    String
+  contenido String
+  resumen   String?
+  imagenUrl String?
+  tipo      TipoPublicacion   @default(BLOG)
+  estado    EstadoPublicacion @default(BORRADOR)
+
+  autorId String
+  autor   Usuario @relation("PublicacionAutor", fields: [autorId], references: [id])
+
+  publicadaEn DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("publicaciones")
+}
+
+// ---------------------------------------------------------------------------
+// Propuesta (genérica: usuarios, proyectos y publicaciones pendientes de
+// aprobación por ADMIN o, en el caso de publicaciones, también por ALTEA)
+// ---------------------------------------------------------------------------
+
+model Propuesta {
+  id         String          @id @default(cuid())
+  tipo       TipoPropuesta
+  datos      Json
+  estado     EstadoPropuesta @default(PENDIENTE)
+  comentario String?
+
+  creadorId String
+  creador   Usuario @relation("PropuestaCreador", fields: [creadorId], references: [id])
+
+  revisorId  String?
+  revisor    Usuario?  @relation("PropuestaRevisor", fields: [revisorId], references: [id])
+  revisadaEn DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("propuestas")
+}
+
+// ---------------------------------------------------------------------------
+// Contact form (existente)
+// ---------------------------------------------------------------------------
+
 model ContactMessage {
   id        String   @id @default(cuid())
   nombre    String
@@ -14,4 +193,6 @@ model ContactMessage {
   motivo    String
   mensaje   String
   createdAt DateTime @default(now())
+
+  @@map("contact_messages")
 }
