@@ -87,6 +87,12 @@ export const permisos = {
     revisarProyecto: ['ADMIN'] as Rol[],
     revisarPublicacion: ['ADMIN', 'ALTEA'] as Rol[],
   },
+  // Calendario: ADMIN y ALTEA crean/editan/eliminan eventos; ALT solo visualiza.
+  eventos: {
+    crear: ['ADMIN', 'ALTEA'] as Rol[],
+    editar: ['ADMIN', 'ALTEA'] as Rol[],
+    eliminar: ['ADMIN', 'ALTEA'] as Rol[],
+  },
 }
 
 export function revisoresPara(tipo: 'USUARIO' | 'PROYECTO' | 'PUBLICACION', datos?: any): Rol[] {

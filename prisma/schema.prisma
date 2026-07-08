@@ -46,6 +46,14 @@ enum TipoPublicacion {
   NOTICIA
 }
 
+enum TipoEvento {
+  EVENTO
+  INICIO_PROYECTO
+  TERMINO_PROYECTO
+  CUMPLEANOS
+  OTRO
+}
+
 // ---------------------------------------------------------------------------
 // Usuario
 // ---------------------------------------------------------------------------
@@ -69,6 +77,8 @@ model Usuario {
 
   propuestasCreadas   Propuesta[] @relation("PropuestaCreador")
   propuestasRevisadas Propuesta[] @relation("PropuestaRevisor")
+
+  eventosCreados Evento[] @relation("EventoCreador")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -180,6 +190,26 @@ model Propuesta {
   updatedAt DateTime @updatedAt
 
   @@map("propuestas")
+}
+
+// ---------------------------------------------------------------------------
+// Evento (calendario)
+// ---------------------------------------------------------------------------
+
+model Evento {
+  id          String     @id @default(cuid())
+  titulo      String
+  descripcion String?
+  fecha       DateTime
+  tipo        TipoEvento @default(EVENTO)
+
+  creadorId String
+  creador   Usuario @relation("EventoCreador", fields: [creadorId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("eventos")
 }
 
 // ---------------------------------------------------------------------------

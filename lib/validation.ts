@@ -63,6 +63,15 @@ export const proyectoUnirseSchema = z.object({
   usuarioId: z.string(),
 })
 
+export const eventoCreateSchema = z.object({
+  titulo: z.string().min(1),
+  descripcion: z.string().optional().nullable(),
+  fecha: z.coerce.date(),
+  tipo: z.enum(['EVENTO', 'INICIO_PROYECTO', 'TERMINO_PROYECTO', 'CUMPLEANOS', 'OTRO']).optional(),
+})
+
+export const eventoUpdateSchema = eventoCreateSchema.partial()
+
 export const usuarioMeUpdateSchema = z.object({
   nombre: z.string().min(1).optional(),
   telefono: z.string().optional().nullable(),

@@ -3,6 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { AVATAR_ACTUALIZADO_EVENT } from '@/components/dashboard/Sidebar'
+import PlantaTorre from '@/components/dashboard/PlantaTorre'
+
+function saludoDelDia(): string {
+  const hora = new Date().getHours()
+  if (hora < 12) return 'Buenos días'
+  if (hora < 19) return 'Buenas tardes'
+  return 'Buenas noches'
+}
 
 type Perfil = {
   id: string
@@ -110,16 +118,28 @@ export default function InicioPage() {
 
   return (
     <div className="space-y-8">
-      <div className="-mx-6 sm:-mx-10 -mt-8 mb-8 bg-gradient-to-r from-green-dark to-green-mid text-white px-6 sm:px-10 py-10">
-        <h1 className="font-display text-3xl font-semibold">
-          Bienvenido(a), {session?.user?.nombre ?? '...'}
-        </h1>
-        <p className="text-white/80 mt-1">Panel de gestión de Asamblea Las Torres.</p>
+      <div className="relative overflow-hidden -mx-6 sm:-mx-10 -mt-8 mb-8 bg-gradient-to-r from-green-dark via-green-dark to-green-mid text-white px-6 sm:px-10 py-10 flex items-center justify-between gap-6">
+        <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-white/10 animate-blob" />
+        <div className="absolute -bottom-16 right-24 w-56 h-56 rounded-full bg-white/5 animate-blob" style={{ animationDelay: '1.5s' }} />
+
+        <div className="relative z-10">
+          <p className="text-white/70 text-sm font-medium mb-1">
+            {saludoDelDia()} <span className="animate-balancear inline-block">☀️</span>
+          </p>
+          <h1 className="font-display text-3xl font-semibold flex items-center gap-2 flex-wrap">
+            Bienvenido(a), {session?.user?.nombre ?? '...'} <span className="animate-hoja inline-block">🌿</span>
+          </h1>
+          <p className="text-white/80 mt-1">Panel de gestión de Asamblea Las Torres.</p>
+        </div>
+
+        <div className="relative z-10 hidden sm:block h-28 shrink-0">
+          <PlantaTorre />
+        </div>
       </div>
 
       {perfil && perfil.proyectos.length > 0 && (
         <div className="card p-5">
-          <h2 className="font-semibold mb-2">Tus proyectos asignados</h2>
+          <h2 className="font-semibold mb-2">🌳 Tus proyectos asignados</h2>
           <ul className="text-sm text-zinc-600 space-y-1">
             {perfil.proyectos.map((p) => (
               <li key={p.proyecto.id}>
@@ -149,7 +169,7 @@ export default function InicioPage() {
           </div>
         )}
         <div>
-          <p className="font-medium mb-1">Foto de perfil</p>
+          <p className="font-medium mb-1">📸 Foto de perfil</p>
           <input
             ref={fileInputRef}
             type="file"
@@ -169,7 +189,7 @@ export default function InicioPage() {
       </div>
 
       <form onSubmit={handleSubmit} className="card p-6 max-w-lg space-y-4">
-        <h2 className="font-semibold">Mis datos</h2>
+        <h2 className="font-semibold">🪪 Mis datos</h2>
 
         {mensaje && (
           <p

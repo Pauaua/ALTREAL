@@ -196,7 +196,9 @@ export default function ProyectosClient({ rol, usuarioId }: { rol: 'ADMIN' | 'AL
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-2xl font-semibold">Proyectos</h1>
+          <h1 className="font-display text-2xl font-semibold flex items-center gap-2">
+            Proyectos <span className="animate-balancear inline-block">🌳</span>
+          </h1>
           <p className="text-zinc-500 text-sm mt-1">
             {soloLectura ? 'Proyectos activos de la organización' : 'Gestiona los proyectos de la organización'}
           </p>
@@ -210,21 +212,21 @@ export default function ProyectosClient({ rol, usuarioId }: { rol: 'ADMIN' | 'AL
 
       {rol === 'ALTEA' && (
         <p className="text-sm text-zinc-500 bg-black/[0.03] rounded-lg px-4 py-3">
-          Para crear un nuevo proyecto debes enviar una solicitud desde la pestaña{' '}
+          🌱 Para crear un nuevo proyecto debes enviar una solicitud desde la pestaña{' '}
           <span className="font-medium">Solicitudes</span>.
         </p>
       )}
 
       {mensajeSolicitud && (
-        <p className="text-sm bg-green-dark/10 text-green-dark rounded-lg px-4 py-3">{mensajeSolicitud}</p>
+        <p className="text-sm bg-green-dark/10 text-green-dark rounded-lg px-4 py-3">🎉 {mensajeSolicitud}</p>
       )}
 
       {cargando ? (
-        <p className="text-sm text-zinc-500">Cargando...</p>
+        <p className="text-sm text-zinc-500">Cargando... 🌱</p>
       ) : (
         <DataTable<Proyecto>
           filas={proyectosVisibles}
-          vacio="No hay proyectos registrados."
+          vacio="No hay proyectos registrados todavía 🌾"
           columnas={[
             { header: 'Nombre', render: (p) => p.nombre },
             { header: 'Inicio', render: (p) => new Date(p.fechaInicio).toLocaleDateString('es-CL') },
@@ -232,8 +234,8 @@ export default function ProyectosClient({ rol, usuarioId }: { rol: 'ADMIN' | 'AL
               header: 'Término',
               render: (p) => (p.fechaTermino ? new Date(p.fechaTermino).toLocaleDateString('es-CL') : '—'),
             },
-            { header: 'Personas necesarias', render: (p) => p.cantidadPersonasNecesarias },
-            { header: 'Integrantes', render: (p) => p.usuarios.length },
+            { header: 'Personas necesarias', render: (p) => `👤 ${p.cantidadPersonasNecesarias}` },
+            { header: 'Integrantes', render: (p) => `🤝 ${p.usuarios.length}` },
             ...(soloLectura
               ? []
               : [
@@ -245,7 +247,7 @@ export default function ProyectosClient({ rol, usuarioId }: { rol: 'ADMIN' | 'AL
                           p.activo ? 'bg-green-dark/10 text-green-dark' : 'bg-zinc-200 text-zinc-500'
                         }`}
                       >
-                        {p.activo ? 'Activo' : 'Inactivo'}
+                        {p.activo ? '🌿 Activo' : '🍂 Inactivo'}
                       </span>
                     ),
                   },
@@ -265,13 +267,13 @@ export default function ProyectosClient({ rol, usuarioId }: { rol: 'ADMIN' | 'AL
               )}
               {soloLectura &&
                 (p.usuarios.some((u) => u.usuario.id === usuarioId) ? (
-                  <span className="text-xs text-zinc-400">Ya eres integrante</span>
+                  <span className="text-xs text-zinc-400">✅ Ya eres integrante</span>
                 ) : (
                   <button
                     onClick={() => solicitarIntegrarme(p)}
                     className="text-sm font-medium text-green-dark hover:underline"
                   >
-                    Solicitar integrarme
+                    🙋 Solicitar integrarme
                   </button>
                 ))}
             </div>
@@ -280,7 +282,7 @@ export default function ProyectosClient({ rol, usuarioId }: { rol: 'ADMIN' | 'AL
       )}
 
       {modalAbierto && (
-        <Modal titulo={editando ? 'Editar proyecto' : 'Crear proyecto'} onClose={() => setModalAbierto(false)}>
+        <Modal titulo={editando ? '✏️ Editar proyecto' : '🌱 Crear proyecto'} onClose={() => setModalAbierto(false)}>
           <form onSubmit={guardar} className="space-y-4">
             {error && (
               <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>

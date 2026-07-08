@@ -25,6 +25,18 @@ const ETIQUETAS_TIPO: Record<Propuesta['tipo'], string> = {
   PUBLICACION: 'Blog / Noticia',
 }
 
+const EMOJI_TIPO: Record<Propuesta['tipo'], string> = {
+  USUARIO: '👤',
+  PROYECTO: '🌳',
+  PUBLICACION: '📰',
+}
+
+const EMOJI_ESTADO: Record<Propuesta['estado'], string> = {
+  PENDIENTE: '⏳',
+  APROBADA: '✅',
+  RECHAZADA: '❌',
+}
+
 const USUARIO_VACIO = { nombre: '', correo: '', telefono: '', comunaResidencia: '', rol: 'ALT' as Rol }
 const PROYECTO_VACIO = {
   nombre: '',
@@ -154,7 +166,9 @@ export default function SolicitudesClient({ rol, usuarioId }: { rol: Rol; usuari
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="font-display text-2xl font-semibold">Solicitudes</h1>
+          <h1 className="font-display text-2xl font-semibold flex items-center gap-2">
+            Solicitudes <span className="animate-balancear inline-block">📨</span>
+          </h1>
           <p className="text-zinc-500 text-sm mt-1">
             {rol === 'ADMIN' && 'Revisa y autoriza las propuestas de la organización'}
             {rol === 'ALTEA' && 'Propón usuarios/proyectos y aprueba solicitudes de blog o noticias'}
@@ -166,17 +180,17 @@ export default function SolicitudesClient({ rol, usuarioId }: { rol: Rol; usuari
           <div className="flex gap-2 flex-wrap">
             {puedeProponerUsuarioProyecto && (
               <button onClick={() => setModalAbierto('USUARIO')} className="btn-outline text-sm py-2 px-4">
-                + Proponer usuario
+                + 👤 Proponer usuario
               </button>
             )}
             {puedeProponerUsuarioProyecto && (
               <button onClick={() => setModalAbierto('PROYECTO')} className="btn-outline text-sm py-2 px-4">
-                + Proponer proyecto
+                + 🌳 Proponer proyecto
               </button>
             )}
             {puedeProponerPublicacion && (
               <button onClick={() => setModalAbierto('PUBLICACION')} className="btn-primary text-sm py-2 px-4">
-                + Proponer blog/noticia
+                + 📰 Proponer blog/noticia
               </button>
             )}
           </div>
@@ -184,13 +198,13 @@ export default function SolicitudesClient({ rol, usuarioId }: { rol: Rol; usuari
       </div>
 
       {cargando ? (
-        <p className="text-sm text-zinc-500">Cargando...</p>
+        <p className="text-sm text-zinc-500">Cargando... 🌱</p>
       ) : (
         <DataTable<Propuesta>
           filas={propuestasVisibles}
-          vacio="No hay solicitudes."
+          vacio="No hay solicitudes por ahora 🌾"
           columnas={[
-            { header: 'Tipo', render: (p) => ETIQUETAS_TIPO[p.tipo] },
+            { header: 'Tipo', render: (p) => `${EMOJI_TIPO[p.tipo]} ${ETIQUETAS_TIPO[p.tipo]}` },
             { header: 'Detalle', render: (p) => resumenDatos(p) },
             { header: 'Solicitado por', render: (p) => `${p.creador.nombre} (${p.creador.rol})` },
             {
@@ -205,7 +219,7 @@ export default function SolicitudesClient({ rol, usuarioId }: { rol: Rol; usuari
                       : 'bg-red-100 text-red-600'
                   }`}
                 >
-                  {p.estado}
+                  {EMOJI_ESTADO[p.estado]} {p.estado}
                 </span>
               ),
             },
@@ -233,7 +247,7 @@ export default function SolicitudesClient({ rol, usuarioId }: { rol: Rol; usuari
       )}
 
       {modalAbierto === 'USUARIO' && (
-        <Modal titulo="Proponer nuevo usuario" onClose={() => setModalAbierto(null)}>
+        <Modal titulo="👤 Proponer nuevo usuario" onClose={() => setModalAbierto(null)}>
           <form onSubmit={enviarUsuario} className="space-y-4">
             {error && <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>}
             <div className="space-y-1">
@@ -292,7 +306,7 @@ export default function SolicitudesClient({ rol, usuarioId }: { rol: Rol; usuari
       )}
 
       {modalAbierto === 'PROYECTO' && (
-        <Modal titulo="Proponer nuevo proyecto" onClose={() => setModalAbierto(null)}>
+        <Modal titulo="🌳 Proponer nuevo proyecto" onClose={() => setModalAbierto(null)}>
           <form onSubmit={enviarProyecto} className="space-y-4">
             {error && <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>}
             <div className="space-y-1">
@@ -374,7 +388,7 @@ export default function SolicitudesClient({ rol, usuarioId }: { rol: Rol; usuari
       )}
 
       {modalAbierto === 'PUBLICACION' && (
-        <Modal titulo="Proponer blog o noticia" onClose={() => setModalAbierto(null)}>
+        <Modal titulo="📰 Proponer blog o noticia" onClose={() => setModalAbierto(null)}>
           <form onSubmit={enviarPublicacion} className="space-y-4">
             {error && <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>}
             <div className="space-y-1">

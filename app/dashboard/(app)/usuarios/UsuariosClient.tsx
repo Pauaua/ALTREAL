@@ -27,6 +27,12 @@ const FORM_VACIO = {
   activo: true,
 }
 
+const EMOJI_ROL: Record<Usuario['rol'], string> = {
+  ADMIN: '👑',
+  ALTEA: '🌟',
+  ALT: '🌱',
+}
+
 export default function UsuariosClient() {
   const [usuarios, setUsuarios] = useState<Usuario[]>([])
   const [cargando, setCargando] = useState(true)
@@ -115,7 +121,9 @@ export default function UsuariosClient() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-2xl font-semibold">Usuarios</h1>
+          <h1 className="font-display text-2xl font-semibold flex items-center gap-2">
+            Usuarios <span className="animate-balancear inline-block">👥</span>
+          </h1>
           <p className="text-zinc-500 text-sm mt-1">Gestiona las cuentas de la organización</p>
         </div>
         <button onClick={abrirCrear} className="btn-primary">
@@ -124,15 +132,22 @@ export default function UsuariosClient() {
       </div>
 
       {cargando ? (
-        <p className="text-sm text-zinc-500">Cargando...</p>
+        <p className="text-sm text-zinc-500">Cargando... 🌱</p>
       ) : (
         <DataTable<Usuario>
           filas={usuarios}
-          vacio="No hay usuarios registrados."
+          vacio="No hay usuarios registrados todavía 🌾"
           columnas={[
             { header: 'Nombre', render: (u) => u.nombre },
             { header: 'Correo', render: (u) => u.correo },
-            { header: 'Rol', render: (u) => u.rol },
+            {
+              header: 'Rol',
+              render: (u) => (
+                <span className="inline-flex items-center gap-1">
+                  {EMOJI_ROL[u.rol]} {u.rol}
+                </span>
+              ),
+            },
             { header: 'Comuna', render: (u) => u.comunaResidencia ?? '—' },
             {
               header: 'Estado',
@@ -142,7 +157,7 @@ export default function UsuariosClient() {
                     u.activo ? 'bg-green-dark/10 text-green-dark' : 'bg-zinc-200 text-zinc-500'
                   }`}
                 >
-                  {u.activo ? 'Activo' : 'Inactivo'}
+                  {u.activo ? '🌿 Activo' : '🍂 Inactivo'}
                 </span>
               ),
             },
@@ -161,7 +176,7 @@ export default function UsuariosClient() {
       )}
 
       {modalAbierto && (
-        <Modal titulo={editando ? 'Editar usuario' : 'Crear usuario'} onClose={() => setModalAbierto(false)}>
+        <Modal titulo={editando ? '✏️ Editar usuario' : '🌱 Crear usuario'} onClose={() => setModalAbierto(false)}>
           <form onSubmit={guardar} className="space-y-4">
             {error && (
               <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>

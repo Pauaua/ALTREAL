@@ -130,11 +130,15 @@ export default function PublicacionesClient({
     setForm((prev) => ({ ...prev, imagenUrl: data.url }))
   }
 
+  const emojiSeccion = tipo === 'BLOG' ? '✍️' : '📰'
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-2xl font-semibold">{titulo}</h1>
+          <h1 className="font-display text-2xl font-semibold flex items-center gap-2">
+            {titulo} <span className="animate-balancear inline-block">{emojiSeccion}</span>
+          </h1>
           <p className="text-zinc-500 text-sm mt-1">Gestiona el contenido publicado en el sitio</p>
         </div>
         <button onClick={abrirCrear} className="btn-primary">
@@ -143,11 +147,11 @@ export default function PublicacionesClient({
       </div>
 
       {cargando ? (
-        <p className="text-sm text-zinc-500">Cargando...</p>
+        <p className="text-sm text-zinc-500">Cargando... 🌱</p>
       ) : (
         <DataTable<Publicacion>
           filas={items}
-          vacio="No hay publicaciones todavía."
+          vacio={`Aún no hay ${tipo === 'BLOG' ? 'entradas de blog' : 'noticias'} 🌾`}
           columnas={[
             { header: 'Título', render: (p) => p.titulo },
             { header: 'Autor', render: (p) => p.autor.nombre },
@@ -159,7 +163,7 @@ export default function PublicacionesClient({
                     p.estado === 'PUBLICADA' ? 'bg-green-dark/10 text-green-dark' : 'bg-zinc-200 text-zinc-500'
                   }`}
                 >
-                  {p.estado === 'PUBLICADA' ? 'Publicada' : 'Borrador'}
+                  {p.estado === 'PUBLICADA' ? '✅ Publicada' : '📝 Borrador'}
                 </span>
               ),
             },
@@ -180,7 +184,7 @@ export default function PublicacionesClient({
 
       {modalAbierto && (
         <Modal
-          titulo={editando ? 'Editar publicación' : `Crear ${tipo === 'BLOG' ? 'entrada de blog' : 'noticia'}`}
+          titulo={editando ? '✏️ Editar publicación' : `${emojiSeccion} Crear ${tipo === 'BLOG' ? 'entrada de blog' : 'noticia'}`}
           onClose={() => setModalAbierto(false)}
         >
           <form onSubmit={guardar} className="space-y-4">
