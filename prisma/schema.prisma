@@ -71,6 +71,12 @@ model Usuario {
   activo           Boolean   @default(true)
   rol              Rol       @default(ALT)
 
+  // Datos adicionales (uso interno, ej. para merch/uniformes de ALTEA)
+  tallaPolera    String?
+  tallaPantalon  String?
+  alturaCm       Int?
+  pesoKg         Float?
+
   proyectos ProyectoUsuario[]
 
   publicaciones Publicacion[] @relation("PublicacionAutor")

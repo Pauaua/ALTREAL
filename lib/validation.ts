@@ -77,6 +77,10 @@ export const usuarioMeUpdateSchema = z.object({
   telefono: z.string().optional().nullable(),
   comunaResidencia: z.string().optional().nullable(),
   avatarUrl: z.string().url().optional().nullable(),
+  tallaPolera: z.string().optional().nullable(),
+  tallaPantalon: z.string().optional().nullable(),
+  alturaCm: z.coerce.number().int().positive().optional().nullable(),
+  pesoKg: z.coerce.number().positive().optional().nullable(),
   passwordActual: z.string().optional(),
   passwordNueva: z.string().min(8).optional(),
 })

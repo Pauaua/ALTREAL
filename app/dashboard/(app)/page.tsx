@@ -20,6 +20,10 @@ type Perfil = {
   telefono: string | null
   comunaResidencia: string | null
   rol: string
+  tallaPolera: string | null
+  tallaPantalon: string | null
+  alturaCm: number | null
+  pesoKg: number | null
   proyectos: { proyecto: { id: string; nombre: string; activo: boolean } }[]
 }
 
@@ -30,6 +34,10 @@ export default function InicioPage() {
   const [nombre, setNombre] = useState('')
   const [telefono, setTelefono] = useState('')
   const [comunaResidencia, setComunaResidencia] = useState('')
+  const [tallaPolera, setTallaPolera] = useState('')
+  const [tallaPantalon, setTallaPantalon] = useState('')
+  const [alturaCm, setAlturaCm] = useState('')
+  const [pesoKg, setPesoKg] = useState('')
   const [passwordActual, setPasswordActual] = useState('')
   const [passwordNueva, setPasswordNueva] = useState('')
   const [mensaje, setMensaje] = useState<{ tipo: 'ok' | 'error'; texto: string } | null>(null)
@@ -44,6 +52,10 @@ export default function InicioPage() {
         setNombre(data.nombre)
         setTelefono(data.telefono ?? '')
         setComunaResidencia(data.comunaResidencia ?? '')
+        setTallaPolera(data.tallaPolera ?? '')
+        setTallaPantalon(data.tallaPantalon ?? '')
+        setAlturaCm(data.alturaCm != null ? String(data.alturaCm) : '')
+        setPesoKg(data.pesoKg != null ? String(data.pesoKg) : '')
       })
   }
 
@@ -63,6 +75,14 @@ export default function InicioPage() {
         nombre,
         telefono,
         comunaResidencia,
+        ...(perfil?.rol === 'ALTEA'
+          ? {
+              tallaPolera: tallaPolera || null,
+              tallaPantalon: tallaPantalon || null,
+              alturaCm: alturaCm ? Number(alturaCm) : null,
+              pesoKg: pesoKg ? Number(pesoKg) : null,
+            }
+          : {}),
         ...(passwordNueva ? { passwordActual, passwordNueva } : {}),
       }),
     })
@@ -226,6 +246,66 @@ export default function InicioPage() {
             onChange={(e) => setComunaResidencia(e.target.value)}
           />
         </div>
+
+        {perfil?.rol === 'ALTEA' && (
+          <>
+            <hr className="border-black/10" />
+
+            <p className="text-sm font-medium">📏 Datos para uniforme (solo ALTEA)</p>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-sm font-medium">Talla de polera</label>
+                <select
+                  className="input-field"
+                  value={tallaPolera}
+                  onChange={(e) => setTallaPolera(e.target.value)}
+                >
+                  <option value="">Selecciona</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+                </select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-sm font-medium">Talla de pantalón</label>
+                <input
+                  className="input-field"
+                  placeholder="Ej: 38"
+                  value={tallaPantalon}
+                  onChange={(e) => setTallaPantalon(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-sm font-medium">Altura (cm)</label>
+                <input
+                  type="number"
+                  min={0}
+                  className="input-field"
+                  value={alturaCm}
+                  onChange={(e) => setAlturaCm(e.target.value)}
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-sm font-medium">Peso (kg)</label>
+                <input
+                  type="number"
+                  min={0}
+                  step="0.1"
+                  className="input-field"
+                  value={pesoKg}
+                  onChange={(e) => setPesoKg(e.target.value)}
+                />
+              </div>
+            </div>
+          </>
+        )}
 
         <hr className="border-black/10" />
 

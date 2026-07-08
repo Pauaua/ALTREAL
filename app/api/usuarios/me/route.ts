@@ -20,6 +20,10 @@ export const GET = withErrorHandling(async () => {
       fechaRegistro: true,
       activo: true,
       rol: true,
+      tallaPolera: true,
+      tallaPantalon: true,
+      alturaCm: true,
+      pesoKg: true,
       proyectos: {
         select: { proyecto: { select: { id: true, nombre: true, activo: true } } },
       },
@@ -59,6 +63,10 @@ export const PATCH = withErrorHandling(async (req: Request) => {
       telefono: data.telefono ?? undefined,
       comunaResidencia: data.comunaResidencia ?? undefined,
       avatarUrl: data.avatarUrl,
+      tallaPolera: data.tallaPolera ?? undefined,
+      tallaPantalon: data.tallaPantalon ?? undefined,
+      alturaCm: data.alturaCm ?? undefined,
+      pesoKg: data.pesoKg ?? undefined,
       passwordHash,
     },
     select: {
@@ -69,6 +77,10 @@ export const PATCH = withErrorHandling(async (req: Request) => {
       telefono: true,
       comunaResidencia: true,
       rol: true,
+      tallaPolera: true,
+      tallaPantalon: true,
+      alturaCm: true,
+      pesoKg: true,
     },
   })
 
